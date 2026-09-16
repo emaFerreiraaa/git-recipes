@@ -8,16 +8,21 @@ const inpName = document.getElementById(
 const inpCategory = document.getElementById(
   "inp-category",
 ) as HTMLSelectElement | null;
+const inpDescripcion = document.getElementById(
+  "inp-descripcion",
+) as HTMLSelectElement | null;
+
 
 const mainRecipeList = new RecipeList();
 
-if (btnAdd && inpName && inpCategory) {
+if (btnAdd && inpName && inpCategory && inpDescripcion) {
   btnAdd.addEventListener("click", () => {
     const recipesErrorContainer = document.getElementById("add-recipes-error");
     const recipesError = document.getElementById("add-recipes-error-msg");
     try {
       const newRecipe = new Recipe(inpName.value);
       newRecipe.category = inpCategory.value;
+      newRecipe.descripcion = inpDescripcion.value;
       mainRecipeList.add(newRecipe);
       clearInputs(inpName, inpCategory);
       recipesErrorContainer?.classList.add("d-none");
