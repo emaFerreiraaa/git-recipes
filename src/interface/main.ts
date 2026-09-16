@@ -8,6 +8,10 @@ const inpName = document.getElementById(
 const inpCategory = document.getElementById(
   "inp-category",
 ) as HTMLSelectElement | null;
+const inpTiempo = document.getElementById(
+  "inp-tiempo",
+) as HTMLSelectElement | null;
+
 const inpDescripcion = document.getElementById(
   "inp-descripcion",
 ) as HTMLSelectElement | null;
@@ -15,13 +19,14 @@ const inpDescripcion = document.getElementById(
 
 const mainRecipeList = new RecipeList();
 
-if (btnAdd && inpName && inpCategory && inpDescripcion) {
+if (btnAdd && inpName && inpCategory && inpTiempo && inpDescripcion) {
   btnAdd.addEventListener("click", () => {
     const recipesErrorContainer = document.getElementById("add-recipes-error");
     const recipesError = document.getElementById("add-recipes-error-msg");
     try {
       const newRecipe = new Recipe(inpName.value);
       newRecipe.category = inpCategory.value;
+      newRecipe.tiempo = Number(inpTiempo.value);
       newRecipe.descripcion = inpDescripcion.value;
       mainRecipeList.add(newRecipe);
       clearInputs(inpName, inpCategory);
